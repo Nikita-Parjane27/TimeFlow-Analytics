@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TimeFlow - Daily Time Tracking & Analytics</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Chart.js for visualizations -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="loading-overlay">
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <span class="loader-text">Loading TimeFlow...</span>
+        </div>
+    </div>
+
+    <!-- ==================== LANDING PAGE ==================== -->
+    <section id="landing-page" class="page landing-page hidden">
+        <nav class="landing-nav">
+            <div class="nav-brand">
+                <span class="brand-icon">⏱️</span>
+                <span class="brand-text">TimeFlow</span>
+            </div>
+            <button id="nav-login-btn" class="btn btn-outline">Sign In</button>
+        </nav>
+
+        <div class="landing-hero">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Master Your <span class="gradient-text">24 Hours</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Track, analyze, and optimize how you spend every minute of your day. 
+                    Beautiful insights powered by AI-driven analytics.
+                </p>
+                <div class="hero-cta">
+                    <button id="hero-get-started" class="btn btn-primary btn-lg">
+                        Get Started Free
+                        <span class="btn-icon">→</span>
+                    </button>
+                    <button id="hero-learn-more" class="btn btn-ghost btn-lg">
+                        Learn More
+                    </button>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">1440</span>
+                        <span class="stat-label">Minutes/Day</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">∞</span>
+                        <span class="stat-label">Possibilities</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">1</span>
+                        <span class="stat-label">You</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="floating-card card-1">
+                    <span class="card-emoji">💼</span>
+                    <span class="card-text">Work: 8h</span>
+                </div>
+                <div class="floating-card card-2">
+                    <span class="card-emoji">😴</span>
+                    <span class="card-text">Sleep: 7h</span>
+                </div>
+                <div class="floating-card card-3">
+                    <span class="card-emoji">🏃</span>
+                    <span class="card-text">Exercise: 1h</span>
+                </div>
+                <div class="clock-visualization">
+                    <div class="clock-ring"></div>
+                    <div class="clock-segment seg-work"></div>
+                    <div class="clock-segment seg-sleep"></div>
+                    <div class="clock-segment seg-exercise"></div>
+                    <div class="clock-center">24h</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="landing-features">
+            <h2 class="section-title">Why TimeFlow?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Visual Analytics</h3>
+                    <p>Beautiful charts and graphs to understand your time allocation at a glance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Daily Tracking</h3>
+                    <p>Log activities in minutes and never lose track of where your day went.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is encrypted and only accessible by you.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📱</div>
+                    <h3>Works Everywhere</h3>
+                    <p>Fully responsive design for mobile, tablet, and desktop.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+     <section class="how-it-works-section" id="how-it-works">
+        <div class="section-container">
+            <div class="section-header">
+                <span class="section-badge">How It Works</span>
+                <h2 class="section-title">Start in <span class="gradient-text">3 Simple Steps</span></h2>
+                <p class="section-subtitle">Getting started with TimeFlow is quick and easy</p>
+            </div>
+            <div class="steps-container">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Create Your Account</h3>
+                        <p>Sign up with email or Google in seconds. No credit card required.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">👤</div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Log Your Activities</h3>
+                        <p>Add activities with duration and category. Track up to 1440 minutes per day.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">📝</div>
+                    </div>
+                </div>
+                <div class="step-connector"></div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Analyze & Optimize</h3>
+                        <p>View beautiful charts and insights to understand and improve your time usage.</p>
+                    </div>
+                    <div class="step-visual">
+                        <div class="step-icon">📈</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="section-container">
+            <div class="cta-card">
+                <div class="cta-content">
+                    <h2>Ready to Master Your Time?</h2>
+                    <p>Join thousands of users who've transformed how they manage their daily hours.</p>
+                    <a href="register.html" class="btn btn-white btn-lg">
+                        Get Started Free
+                        <span class="btn-icon">→</span>
+                    </a>
+                </div>
+                <div class="cta-decoration">
+                    <div class="cta-circle c1"></div>
+                    <div class="cta-circle c2"></div>
+                    <div class="cta-circle c3"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== AUTH MODAL ==================== -->
+    <div id="auth-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content auth-modal-content">
+            <button class="modal-close" id="close-auth-modal">&times;</button>
+            
+            <div class="auth-header">
+                <span class="auth-icon">⏱️</span>
+                <h2 id="auth-title">Welcome Back</h2>
+                <p id="auth-subtitle">Sign in to continue tracking your time</p>
+            </div>
+
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Sign In</button>
+                <button class="auth-tab" data-tab="register">Sign Up</button>
+            </div>
+
+            <!-- Login Form -->
+            <form id="login-form" class="auth-form">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Sign In
+                </button>
+            </form>
+
+            <!-- Register Form -->
+            <form id="register-form" class="auth-form hidden">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" placeholder="John Doe" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" placeholder="you@example.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" placeholder="••••••••" minlength="6" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    Create Account
+                </button>
+            </form>
+
+            <div class="auth-divider">
+                <span>or continue with</span>
+            </div>
+
+            <button id="google-signin" class="btn btn-google btn-block">
+                <svg class="google-icon" viewBox="0 0 24 24">
+                    <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                    <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                    <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                Google
+            </button>
+
+            <div id="auth-error" class="auth-error hidden"></div>
+        </div>
+    </div>
+
+    <!-- ==================== MAIN APP ==================== -->
+    <section id="app-page" class="page app-page hidden">
+        <!-- App Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <span class="brand-icon">⏱️</span>
+                <span class="brand-text">TimeFlow</span>
+            </div>
+            <div class="header-right">
+                <div class="user-info">
+                    <img id="user-avatar" class="user-avatar" src="" alt="User">
+                    <span id="user-name" class="user-name">User</span>
+                </div>
+                <button id="logout-btn" class="btn btn-outline btn-sm">
+                    Sign Out
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="app-main">
+            <!-- Left Panel: Activity Logging -->
+            <div class="panel activities-panel">
+                <div class="panel-header">
+                    <h2>📝 Log Activities</h2>
+                    <div class="date-picker-wrapper">
+                        <label for="activity-date">Select Date:</label>
+                        <input type="date" id="activity-date" class="date-picker">
+                    </div>
+                </div>
+
+                <!-- Time Remaining Card -->
+                <div class="time-remaining-card">
+                    <div class="time-progress">
+                        <div class="progress-ring">
+                            <svg viewBox="0 0 100 100">
+                                <circle class="progress-bg" cx="50" cy="50" r="45"/>
+                                <circle id="progress-circle" class="progress-fill" cx="50" cy="50" r="45"/>
+                            </svg>
+                            <div class="progress-center">
+                                <span id="time-used">0</span>
+                                <span class="progress-label">min used</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="time-info">
+                        <div class="time-stat">
+                            <span class="stat-value" id="remaining-minutes">1440</span>
+                            <span class="stat-label">Minutes Remaining</span>
+                        </div>
+                        <div class="time-stat">
+                            <span class="stat-value" id="remaining-hours">24h 0m</span>
+                            <span class="stat-label">Time Left</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add Activity Form -->
+                <form id="add-activity-form" class="activity-form">
+                    <h3>➕ Add New Activity</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="activity-name">Activity Name</label>
+                            <input type="text" id="activity-name" placeholder="e.g., Morning meeting" required>
+                        </div>
+                    </div>
+                    <div class="form-row two-col">
+                        <div class="form-group">
+                            <label for="activity-category">Category</label>
+                            <select id="activity-category" required>
+                                <option value="">Select category</option>
+                                <option value="work">💼 Work</option>
+                                <option value="study">📚 Study</option>
+                                <option value="sleep">😴 Sleep</option>
+                                <option value="exercise">🏃 Exercise</option>
+                                <option value="entertainment">🎮 Entertainment</option>
+                                <option value="meals">🍽️ Meals</option>
+                                <option value="commute">🚗 Commute</option>
+                                <option value="personal">🧘 Personal Care</option>
+                                <option value="social">👥 Social</option>
+                                <option value="other">📌 Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="activity-duration">Duration (minutes)</label>
+                            <input type="number" id="activity-duration" min="1" max="1440" placeholder="60" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">
+                        Add Activity
+                    </button>
+                </form>
+
+                <!-- Activities List -->
+                <div class="activities-list-container">
+                    <h3>📋 Today's Activities</h3>
+                    <div id="activities-list" class="activities-list">
+                        <!-- Activities will be rendered here -->
+                    </div>
+                </div>
+
+                <!-- Analyse Button -->
+                <button id="analyse-btn" class="btn btn-gradient btn-block btn-lg analyse-btn" disabled>
+                    📊 Analyse My Day
+                </button>
+            </div>
+
+            <!-- Right Panel: Dashboard -->
+            <div class="panel dashboard-panel">
+                <div class="panel-header">
+                    <h2>📊 Analytics Dashboard</h2>
+                    <div class="date-picker-wrapper">
+                        <label for="dashboard-date">View Date:</label>
+                        <input type="date" id="dashboard-date" class="date-picker">
+                    </div>
+                </div>
+
+                <!-- Dashboard Content -->
+                <div id="dashboard-content" class="dashboard-content">
+                    <!-- No Data State -->
+                    <div id="no-data-view" class="no-data-view">
+                        <div class="no-data-illustration">
+                            <div class="no-data-icon">📭</div>
+                            <div class="no-data-circles">
+                                <div class="circle c1"></div>
+                                <div class="circle c2"></div>
+                                <div class="circle c3"></div>
+                            </div>
+                        </div>
+                        <h3>No Data Available</h3>
+                        <p>You haven't logged any activities for this date yet.</p>
+                        <button id="start-logging-btn" class="btn btn-primary">
+                            Start Logging Your Day
+                        </button>
+                    </div>
+
+                    <!-- Analytics View -->
+                    <div id="analytics-view" class="analytics-view hidden">
+                        <!-- Summary Cards -->
+                        <div class="summary-cards">
+                            <div class="summary-card">
+                                <div class="card-icon">⏰</div>
+                                <div class="card-content">
+                                    <span class="card-value" id="total-hours">0h 0m</span>
+                                    <span class="card-label">Total Logged</span>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="card-icon">📝</div>
+                                <div class="card-content">
+                                    <span class="card-value" id="total-activities">0</span>
+                                    <span class="card-label">Activities</span>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="card-icon">🏆</div>
+                                <div class="card-content">
+                                    <span class="card-value" id="top-category">-</span>
+                                    <span class="card-label">Top Category</span>
+                                </div>
+                            </div>
+                            <div class="summary-card">
+                                <div class="card-icon">⚡</div>
+                                <div class="card-content">
+                                    <span class="card-value" id="avg-duration">0m</span>
+                                    <span class="card-label">Avg Duration</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Charts -->
+                        <div class="charts-grid">
+                            <div class="chart-container pie-chart-container">
+                                <h4>Time by Category</h4>
+                                <canvas id="category-pie-chart"></canvas>
+                            </div>
+                            <div class="chart-container bar-chart-container">
+                                <h4>Activity Durations</h4>
+                                <canvas id="duration-bar-chart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Timeline -->
+                        <div class="timeline-container">
+                            <h4>📅 Day Timeline</h4>
+                            <div id="day-timeline" class="day-timeline">
+                                <!-- Timeline segments will be rendered here -->
+                            </div>
+                            <div class="timeline-legend" id="timeline-legend">
+                                <!-- Legend items will be rendered here -->
+                            </div>
+                        </div>
+
+                        <!-- Category Breakdown -->
+                        <div class="category-breakdown">
+                            <h4>📈 Category Breakdown</h4>
+                            <div id="category-bars" class="category-bars">
+                                <!-- Category bars will be rendered here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </section>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Edit Activity Modal -->
+    <div id="edit-modal" class="modal hidden">
+        <div class="modal-backdrop"></div>
+        <div class="modal-content edit-modal-content">
+            <button class="modal-close" id="close-edit-modal">&times;</button>
+            <h2>✏️ Edit Activity</h2>
+            <form id="edit-activity-form">
+                <input type="hidden" id="edit-activity-id">
+                <div class="form-group">
+                    <label for="edit-name">Activity Name</label>
+                    <input type="text" id="edit-name" required>
+                </div>
+                <div class="form-row two-col">
+                    <div class="form-group">
+                        <label for="edit-category">Category</label>
+                        <select id="edit-category" required>
+                            <option value="work">💼 Work</option>
+                            <option value="study">📚 Study</option>
+                            <option value="sleep">😴 Sleep</option>
+                            <option value="exercise">🏃 Exercise</option>
+                            <option value="entertainment">🎮 Entertainment</option>
+                            <option value="meals">🍽️ Meals</option>
+                            <option value="commute">🚗 Commute</option>
+                            <option value="personal">🧘 Personal Care</option>
+                            <option value="social">👥 Social</option>
+                            <option value="other">📌 Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="edit-duration">Duration (minutes)</label>
+                        <input type="number" id="edit-duration" min="1" max="1440" required>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button type="button" id="delete-activity-btn" class="btn btn-danger">
+                        🗑️ Delete
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        💾 Save Changes
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/activities.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
