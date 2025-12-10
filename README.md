@@ -2,27 +2,12 @@
 
 **A beautiful, responsive web application for tracking and analyzing how you spend your 24 hours each day.**
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://your-username.github.io/timeflow)
+[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://github.com/Nikita-Parjane27/TimeFlow-Analytics)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-[![Made with Love](https://img.shields.io/badge/Made%20with-❤️-red?style=for-the-badge)](https://github.com/your-username)
-
-[Live Demo](https://your-username.github.io/timeflow) 
-• [Video Walkthrough](https://youtube.com/watch?v=xxxxx) • [Report Bug](https://github.com/your-username/timeflow/issues) • [Request Feature](https://github.com/your-username/timeflow/issues)
-
-
----
-
-## 📋 Table of Contents
-
-- [Overview](#-overview)
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Screenshots](#-screenshots)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Firebase Setup](#-firebase-setup)
-- [AI Tools Used](#-ai-tools-used)
-- [Future Improvements](#-future-improvements)
+[Live Demo](https://github.com/Nikita-Parjane27/TimeFlow-Analytics) 
+• [Video Walkthrough](https://youtube.com/watch?v=xxxxx) 
+• [Report Bug](https://github.com/Nikita-Parjane27/TimeFlow-Analytics/issues) 
+• [Request Feature](https://github.com/Nikita-Parjane27/TimeFlow-Analytics/issues)
 
 ---
 
@@ -42,38 +27,13 @@
 
 ## ✨ Features
 
-### 🔐 Authentication
-- **Email/Password Sign-up & Login** - Traditional authentication method
-- **Google Sign-In** - One-click social authentication
-- **Persistent Sessions** - Stay logged in across browser sessions
-- **Password Reset** - Secure password recovery flow
-
-### 📝 Activity Management
-- **Quick Activity Logging** - Add activities with duration and category
-- **Multiple Activities per Day** - Track unlimited activities daily
-- **Activity Categories** - Organize activities (Work, Study, Exercise, etc.)
-- **Edit & Delete** - Manage your logged activities easily
-- **Real-time Updates** - Instant synchronization across devices
-
-### 📊 Analytics & Visualization
-- **Pie Charts** - Visual breakdown of daily time distribution
-- **Bar Charts** - Compare time spent across categories
-- **Timeline View** - See your day hour-by-hour
-- **Weekly/Monthly Trends** - Track patterns over time
-- **Export Options** - Download reports and charts
-
-### 🎨 User Experience
-- **Modern Dark Theme** - Easy on the eyes, beautiful design
-- **Smooth Animations** - Polished transitions and interactions
-- **Responsive Design** - Optimized for mobile, tablet, and desktop
-- **No Data States** - Friendly illustrations when no activities logged
-- **Loading States** - Clear feedback during operations
-
-### ☁️ Cloud Features
-- **Real-time Sync** - Automatic backup to Firebase
-- **Multi-device Support** - Access from anywhere
-- **Offline Capability** - Work offline, sync when connected
-- **Data Security** - Firestore security rules protect your data
+- 🔐 **Secure Authentication**  Email/Password and Google Sign-in 
+- 📝 **Activity Logging**  Track multiple activities per day 
+- 📊 **Analytics Dashboard**  Pie charts, bar charts, timeline visualizations 
+- 📱 **Fully Responsive**  Works on mobile, tablet, and desktop
+- 🎨 **Beautiful UI**  Modern dark theme with smooth animations 
+- ☁️ **Cloud Sync**  Data synced across all devices via Firebase 
+- ⚡ **No Data State**  User-friendly illustration/message when no data is logged 
 
 ---
 
@@ -86,8 +46,8 @@
 - **Firebase SDK** - Authentication and Firestore database
 
 ### Deployment
-![GitHub Pages] ()
-![Netlify]()
+![GitHub Pages] (https://nikita-parjane27.github.io/TimeFlow-Analytics/)
+![Netlify](https://timeflow-analytics.netlify.app/)
 ---
 
 ## 📸 Screenshots
@@ -108,8 +68,6 @@
 ![No Data](assets/images/no-data.png)
 *Friendly empty state encouraging users to start logging*
 
-</div>
-
 ---
 
 ## 🚀 Getting Started
@@ -125,5 +83,24 @@
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/timeflow.git
+   git clone https://github.com/Nikita-Parjane27/TimeFlow-Analytics
    cd timeflow
+
+2. **Install dependencies (if any)**
+- Vanilla JS project: no installation needed
+- If using a local dev server (like Live Server extension in VS Code), start it
+
+3. **Set up Firebase**
+- Add your Firebase configuration in src/js/firebase-config.js
+- Make sure Firestore rules and Authentication are enabled
+
+4. **Run the project**
+- Open index.html in your browser, or serve via a local dev server
+
+### 📈 Future Improvements
+
+- AI-generated personalized suggestions for optimizing daily schedule
+- Multi-day timeline visualization
+- Export analytics reports as PDF
+- Dark/light theme toggle
+- Optional user settings & notifications
