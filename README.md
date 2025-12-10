@@ -4,6 +4,9 @@
 
 [![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://github.com/Nikita-Parjane27/TimeFlow-Analytics)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
+
+--- 
+
 [Live Demo](https://github.com/Nikita-Parjane27/TimeFlow-Analytics) 
 • [Video Walkthrough](https://youtube.com/watch?v=xxxxx) 
 • [Report Bug](https://github.com/Nikita-Parjane27/TimeFlow-Analytics/issues) 
@@ -82,10 +85,7 @@
 ### Installation
 
 1. **Clone the repository**
-   ```bash
-   git clone https://github.com/Nikita-Parjane27/TimeFlow-Analytics
-   cd timeflow
-
+  
 2. **Install dependencies (if any)**
 - Vanilla JS project: no installation needed
 - If using a local dev server (like Live Server extension in VS Code), start it
