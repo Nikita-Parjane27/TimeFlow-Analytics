@@ -5,7 +5,7 @@
 --- 
 
 [Live Demo](https://github.com/Nikita-Parjane27/TimeFlow-Analytics) 
-• [Video Walkthrough](https://youtube.com/watch?v=xxxxx) 
+• [Video Walkthrough](https://youtu.be/blTcFRsj3io) 
 • [Report Bug](https://github.com/Nikita-Parjane27/TimeFlow-Analytics/issues) 
 • [Request Feature](https://github.com/Nikita-Parjane27/TimeFlow-Analytics/issues)
 
