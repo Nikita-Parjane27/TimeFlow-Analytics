@@ -2,9 +2,6 @@
 
 **A beautiful, responsive web application for tracking and analyzing how you spend your 24 hours each day.**
 
-[![Live Demo](https://img.shields.io/badge/demo-live-success?style=for-the-badge)](https://github.com/Nikita-Parjane27/TimeFlow-Analytics)
-[![License](https://img.shields.io/badge/license-MIT-blue?style=for-the-badge)](LICENSE)
-
 --- 
 
 [Live Demo](https://github.com/Nikita-Parjane27/TimeFlow-Analytics) 
