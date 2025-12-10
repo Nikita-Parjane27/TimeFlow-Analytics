@@ -50,7 +50,7 @@
 
 ### Deployment
 ![GitHub Pages] (https://nikita-parjane27.github.io/TimeFlow-Analytics/)
-![Netlify](https://timeflow-analytics.netlify.app/)
+![Netlify ]  (https://timeflow-analytics.netlify.app/)
 ---
 
 ## 📸 Screenshots
